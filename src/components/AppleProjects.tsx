@@ -5,21 +5,7 @@ import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 const projects = [
   {
-    name: "AEGIS",
-    title: "Zero-Trust Authentication",
-    description: "Enterprise-grade security for modern applications.",
-    image: "https://images.unsplash.com/photo-1575388902449-6bca946ad549?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzbGVlayUyMG1vZGVybiUyMGludGVyZmFjZSUyMGRhc2hib2FyZHxlbnwxfHx8fDE3NjM3MzYzNTB8MA&ixlib=rb-4.1.0&q=80&w=1080",
-    theme: "from-blue-500/20 to-purple-500/20",
-  },
-  {
-    name: "SENTINEL",
-    title: "Infrastructure Monitor",
-    description: "Real-time threat detection and response system.",
-    image: "https://images.unsplash.com/photo-1749497636414-ce2aae2df56c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtaW5pbWFsJTIwZGFyayUyMGx1eHVyeSUyMHByb2R1Y3R8ZW58MXx8fHwxNzYzNzM2MzQ5fDA&ixlib=rb-4.1.0&q=80&w=1080",
-    theme: "from-orange-500/20 to-red-500/20",
-  },
-  {
-    name: "FORTRESS",
+    name: "JustMakeit!",
     title: "API Gateway",
     description: "Secure, scalable microservices orchestration.",
     image: "https://images.unsplash.com/photo-1735905131163-cd06ac8e8632?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGdlb21ldHJpYyUyMG1pbmltYWxpc3R8ZW58MXx8fHwxNzYzNzM2MzUwfDA&ixlib=rb-4.1.0&q=80&w=1080",
@@ -29,11 +15,11 @@ const projects = [
 
 export function AppleProjects() {
   return (
-    <div className="bg-black">
+    <div id="projects" className="bg-black">
       {projects.map((project, index) => (
         <section
           key={project.name}
-          className="relative min-h-screen flex items-center py-24 md:py-32 px-6 overflow-hidden"
+          className="relative flex items-center pt-24 pb-12 md:pt-32 md:pb-16 px-6 overflow-hidden"
         >
           {/* Background gradient */}
           <div className={`absolute inset-0 bg-gradient-to-br ${project.theme} opacity-30`} />

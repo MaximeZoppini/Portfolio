@@ -1,19 +1,19 @@
 import { motion } from "motion/react";
 import { Button } from "./ui/button";
-import { ArrowRight, Server } from "lucide-react";
+import { ArrowRight, Server, Briefcase } from "lucide-react";
 
 export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-6">
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950" />
+      <div className="absolute inset-0 bg-black" />
       
       {/* Animated grid pattern */}
-      <div className="absolute inset-0 opacity-20">
+      <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{
           backgroundImage: `
-            linear-gradient(to right, rgb(148, 163, 184) 1px, transparent 1px),
-            linear-gradient(to bottom, rgb(148, 163, 184) 1px, transparent 1px)
+            linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px)
           `,
           backgroundSize: '80px 80px'
         }} />
@@ -58,19 +58,19 @@ export function Hero() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2 }}
           >
-            <span className="text-slate-300">Available for opportunities</span>
+            <span className="text-slate-400 text-sm tracking-widest uppercase">Available for opportunities</span>
           </motion.div>
 
-          <h1 className="text-6xl md:text-7xl lg:text-8xl mb-6 text-white tracking-tight">
-            Engineering Secure
+          <h1 className="text-6xl md:text-8xl lg:text-9xl mb-8 text-white tracking-tighter font-semibold leading-[1.1]">
+             Maxime's Portfolio
             <br />
             <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-              Architectures
+              
             </span>
           </h1>
 
           <p className="text-xl md:text-2xl text-slate-400 mb-12 max-w-3xl mx-auto">
-            Computer Science & Cybersecurity Portfolio
+            Computer Science & Cybersecurity 
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -85,6 +85,21 @@ export function Hero() {
               >
                 View Work
                 <ArrowRight className="ml-2 size-4 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </motion.div>
+
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Button
+                size="lg"
+                variant="outline"
+                className="bg-slate-800/30 backdrop-blur-md border-slate-700/50 text-white hover:bg-slate-800/50 hover:text-white px-8 h-12 group"
+                onClick={() => document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                <Briefcase className="mr-2 size-4" />
+                Experience
               </Button>
             </motion.div>
 

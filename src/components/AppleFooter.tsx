@@ -13,15 +13,7 @@ export function AppleFooter() {
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          <h2 className="text-4xl md:text-6xl lg:text-7xl text-white mb-8 tracking-tight" style={{ fontWeight: 600 }}>
-            Let's build something
-            <br />
-            exceptional.
-          </h2>
-          <p className="text-xl text-slate-400 mb-12">
-            Available for select consulting engagements.
-          </p>
-
+          
           {/* Contact links */}
           <div className="flex flex-wrap justify-center gap-6">
             <motion.a
