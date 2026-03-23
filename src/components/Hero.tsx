@@ -1,6 +1,8 @@
 import { motion } from "motion/react";
 import { Button } from "./ui/button";
-import { ArrowRight, Server, Briefcase } from "lucide-react";
+import { ArrowRight, Server, Briefcase, Info } from "lucide-react";
+import { AboutWebsite } from "./AboutWebsite";
+
 
 export function Hero() {
   return (
@@ -107,16 +109,18 @@ export function Hero() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Button
-                size="lg"
-                variant="outline"
-                className="bg-slate-800/30 backdrop-blur-md border-slate-700/50 text-white hover:bg-slate-800/50 hover:text-white px-8 h-12 group"
-                onClick={() => document.getElementById('infrastructure')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                <Server className="mr-2 size-4" />
-                My Infrastructure
-              </Button>
+              <AboutWebsite>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="bg-slate-800/30 backdrop-blur-md border-slate-700/50 text-white hover:bg-slate-800/50 hover:text-white px-8 h-12 group"
+                >
+                  <Info className="mr-2 size-4" />
+                  About this website
+                </Button>
+              </AboutWebsite>
             </motion.div>
+
           </div>
         </motion.div>
 

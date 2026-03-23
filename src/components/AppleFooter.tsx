@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail } from "lucide-react";
+import { AboutWebsite } from "./AboutWebsite";
+
 
 export function AppleFooter() {
   return (
@@ -58,11 +60,15 @@ export function AppleFooter() {
         >
           <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-slate-600">
             <p>© 2024 The Secure Core. All rights reserved.</p>
-            <div className="flex gap-8">
+            <div className="flex gap-8 items-center">
+              <AboutWebsite>
+                <button className="hover:text-white transition-colors">About this website</button>
+              </AboutWebsite>
               <a href="#" className="hover:text-white transition-colors">Privacy</a>
               <a href="#" className="hover:text-white transition-colors">Terms</a>
               <a href="#" className="hover:text-white transition-colors">Security</a>
             </div>
+
           </div>
         </motion.div>
       </div>
