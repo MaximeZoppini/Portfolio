@@ -2,8 +2,12 @@ import { motion } from "motion/react";
 import { Server, Shield, Zap, HardDrive, Network, Activity, Cpu, Rocket, Globe } from "lucide-react";
 
 const infraStats = [
-
+  { label: "Uptime", value: "99.9%", icon: Activity, color: "from-green-500 to-emerald-500" },
+  { label: "Storage", value: "2TB", icon: HardDrive, color: "from-blue-500 to-indigo-500" },
+  { label: "Cores", value: "16 vCPU", icon: Cpu, color: "from-purple-500 to-pink-500" },
+  { label: "Security", value: "WAF", icon: Shield, color: "from-orange-500 to-red-500" },
 ];
+
 
 const securityLayers = [
   { name: "Cloudflare Tunnel", description: "Secure Argo tunnel for port-less exposure and IP masking.", status: "Active" },

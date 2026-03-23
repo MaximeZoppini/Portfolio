@@ -1,11 +1,26 @@
-import { motion } from "framer-motion";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { useState } from "react";
+import { motion } from "motion/react";
+
+import { Github, Linkedin, Mail, Download } from "lucide-react";
+
 import { AboutWebsite } from "./AboutWebsite";
 
-
 export function AppleFooter() {
+  const [emailCopied, setEmailCopied] = useState(false);
+
+  const handleCopyEmail = (e: React.MouseEvent) => {
+    e.preventDefault();
+    navigator.clipboard.writeText("zoppinimax@gmail.com");
+    setEmailCopied(true);
+    setTimeout(() => setEmailCopied(false), 2000);
+  };
+
+
   return (
-    <footer className="relative py-20 px-6 bg-black border-t border-white/5">
+    <footer 
+      className="relative pb-12 px-6 bg-black border-t border-white/5"
+      style={{ marginTop: "3rem", paddingTop: "4rem" }}
+    >
       <div className="max-w-7xl mx-auto">
         {/* CTA Section */}
         <motion.div
@@ -13,7 +28,7 @@ export function AppleFooter() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-20"
+          className="text-center"
         >
           
           {/* Contact links */}
@@ -21,7 +36,8 @@ export function AppleFooter() {
             <motion.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              href="#"
+              href="https://github.com/MaximeZoppini"
+              target="_blank" rel="noopener noreferrer"
               className="flex items-center gap-3 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-full text-white transition-colors"
             >
               <Github className="size-5" />
@@ -31,44 +47,44 @@ export function AppleFooter() {
             <motion.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              href="#"
+              href="/MaximeZoppini_Resume.pdf"
+              download="MaximeZoppini_Resume.pdf"
+              className="flex items-center gap-3 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-full text-white transition-colors"
+            >
+              <Download className="size-5" />
+              <span>Download CV</span>
+            </motion.a>
+
+            <motion.a
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              href="https://www.linkedin.com/in/maximezoppini/"
+              target="_blank" rel="noopener noreferrer"
               className="flex items-center gap-3 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-full text-white transition-colors"
             >
               <Linkedin className="size-5" />
               <span>LinkedIn</span>
             </motion.a>
 
-            <motion.a
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              href="#"
-              className="flex items-center gap-3 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-full text-white transition-colors"
-            >
-              <Mail className="size-5" />
-              <span>Email</span>
-            </motion.a>
-          </div>
-        </motion.div>
-
-        {/* Bottom section */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="pt-12 border-t border-white/5"
-        >
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-slate-600">
-            <p>© 2024 The Secure Core. All rights reserved.</p>
-            <div className="flex gap-8 items-center">
-              <AboutWebsite>
-                <button className="hover:text-white transition-colors">About this website</button>
-              </AboutWebsite>
-              <a href="#" className="hover:text-white transition-colors">Privacy</a>
-              <a href="#" className="hover:text-white transition-colors">Terms</a>
-              <a href="#" className="hover:text-white transition-colors">Security</a>
+            <div className="relative inline-block">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={handleCopyEmail}
+                className="flex items-center gap-3 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-full text-white transition-colors"
+              >
+                <Mail className="size-5" />
+                <span>zoppinimax@gmail.com</span>
+              </motion.button>
+              {emailCopied && (
+                <span 
+                  className="absolute left-1/2 -translate-x-1/2 px-3 py-1 bg-white/10 backdrop-blur-md rounded-md text-sm border border-white/20 text-white shadow-xl pointer-events-none whitespace-nowrap z-50"
+                  style={{ top: "-45px" }}
+                >
+                  Mail copié !
+                </span>
+              )}
             </div>
-
           </div>
         </motion.div>
       </div>
