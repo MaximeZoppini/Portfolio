@@ -5,7 +5,7 @@ import { Github, Linkedin, Mail, Download } from "lucide-react";
 
 import { AboutWebsite } from "./AboutWebsite";
 
-export function AppleFooter() {
+export function AppleFooter({ isInfected }: { isInfected?: boolean }) {
   const [emailCopied, setEmailCopied] = useState(false);
 
   const handleCopyEmail = (e: React.MouseEvent) => {
@@ -18,8 +18,8 @@ export function AppleFooter() {
 
   return (
     <footer 
-      className="relative pb-12 px-6 bg-black border-t border-white/5"
-      style={{ marginTop: "3rem", paddingTop: "4rem" }}
+      className="relative py-4 px-4 bg-black border-t border-white/5"
+      style={{ flexShrink: 0 }}
     >
       <div className="max-w-7xl mx-auto">
         {/* CTA Section */}
@@ -41,7 +41,7 @@ export function AppleFooter() {
               className="flex items-center gap-3 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-full text-white transition-colors"
             >
               <Github className="size-5" />
-              <span>GitHub</span>
+              <span>{isInfected ? "Yes" : "GitHub"}</span>
             </motion.a>
 
             <motion.a
@@ -52,7 +52,7 @@ export function AppleFooter() {
               className="flex items-center gap-3 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-full text-white transition-colors"
             >
               <Download className="size-5" />
-              <span>Download CV</span>
+              <span>{isInfected ? "Yes" : "Download CV"}</span>
             </motion.a>
 
             <motion.a
@@ -63,7 +63,7 @@ export function AppleFooter() {
               className="flex items-center gap-3 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-full text-white transition-colors"
             >
               <Linkedin className="size-5" />
-              <span>LinkedIn</span>
+              <span>{isInfected ? "Yes" : "LinkedIn"}</span>
             </motion.a>
 
             <div className="relative inline-block">
@@ -74,7 +74,7 @@ export function AppleFooter() {
                 className="flex items-center gap-3 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-full text-white transition-colors"
               >
                 <Mail className="size-5" />
-                <span>zoppinimax@gmail.com</span>
+                <span>{isInfected ? "Yes" : "zoppinimax@gmail.com"}</span>
               </motion.button>
               {emailCopied && (
                 <span 
