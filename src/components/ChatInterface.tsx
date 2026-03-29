@@ -14,7 +14,8 @@ type Message = {
   text?: React.ReactNode;
   choices?: Choice[];
   layoutId?: string;
-  isReward?: boolean;
+  isSpecialStyle?: boolean;
+  isDustyPrototype?: boolean;
   yesLevel?: number;
 };
 
@@ -169,7 +170,8 @@ function TypingIndicator() {
 
 function ReceivedBubble({ 
   text, 
-  isReward, 
+  isSpecialStyle, 
+  isDustyPrototype,
   yesCount, 
   isInfected,
   isDraggingSpare,
@@ -177,7 +179,8 @@ function ReceivedBubble({
   onStartDrag
 }: { 
   text: React.ReactNode; 
-  isReward?: boolean; 
+  isSpecialStyle?: boolean;
+  isDustyPrototype?: boolean;
   yesCount: number; 
   isInfected: boolean;
   isDraggingSpare?: boolean;
@@ -211,19 +214,19 @@ function ReceivedBubble({
         {isInfected ? "Y" : "M"}
       </div>
       <div
-        className={`rounded-2xl rounded-bl-none text-[15px] font-medium leading-snug shadow-sm ${isReward ? "reward-message" : ""}`}
+        className={`rounded-2xl rounded-bl-none text-[15px] font-medium leading-snug shadow-sm ${isSpecialStyle || isDustyPrototype ? "reward-message" : ""}`}
         style={{
-          background: isYellow ? "#2d2a00" : (isReward ? "#3d3215" : "#262628"),
-          color: isYellow ? "#FFD60A" : (isReward ? "#FFD700" : "#FFFFFF"),
+          background: isYellow ? "#2d2a00" : (isSpecialStyle || isDustyPrototype ? "#3d3215" : "#262628"),
+          color: isYellow ? "#FFD60A" : (isSpecialStyle || isDustyPrototype ? "#FFD700" : "#FFFFFF"),
           padding: "9px 16px",
           maxWidth: "75%",
           fontFamily: "-apple-system, 'SF Pro Display', BlinkMacSystemFont, sans-serif",
-          border: isYellow ? "1px solid rgba(255, 214, 10, 0.5)" : (isReward ? "1px solid rgba(255, 215, 0, 0.4)" : "none"),
+          border: isYellow ? "1px solid rgba(255, 214, 10, 0.5)" : (isSpecialStyle || isDustyPrototype ? "1px solid rgba(255, 215, 0, 0.4)" : "none"),
           boxShadow: isYellow ? "0 0 20px rgba(255, 214, 10, 0.15)" : "none",
           textShadow: isYellow ? "0 0 8px rgba(255, 214, 10, 0.3)" : "none"
         }}
       >
-        {isReward ? (
+        {isDustyPrototype ? (
           <div className="flex flex-col gap-3 items-center py-2">
             <span>Found it, here you go.</span>
             <span>This was a prototype, besides the dust it should work just fine.</span>
@@ -383,11 +386,15 @@ export function ChatInterface({ isInfected, onInfect }: { isInfected: boolean, o
     `${c.emoji} ${c.label}`.trim().toLowerCase() === textToMatch)
   );
 
-  const isSpecialCmd = textToMatch === "no" || 
-    (waitingForSure && textToMatch === "yes") || 
-    (waitingForSure && textToMatch === "no") ||
-    (textToMatch === "yes");
-  const isValidChoice = (!!matchedChoice || isSpecialCmd) && !isGhosting && !isInfected;
+  const isFirstInteraction = askedIdsRef.current.size === 0 && !messages.some(m => m.role === "user");
+
+  const isSpecialCmd = 
+    (isFirstInteraction && (textToMatch === "no" || textToMatch === "yes")) || 
+    (waitingForSure && (textToMatch === "yes" || textToMatch === "no")) ||
+    ((isInfected || yesCount > 0) && textToMatch === "yes") ||
+    (trollCount === 1 && textToMatch === "no");
+
+  const isValidChoice = (!!matchedChoice || isSpecialCmd) && !isGhosting;
   
   // Autocomplete Filter for display
   const filteredChoices = (textToMatch === "" || isGhosting || waitingForSure || isInfected || yesCount > 0)
@@ -549,7 +556,7 @@ export function ChatInterface({ isInfected, onInfect }: { isInfected: boolean, o
               text: (
                 <div className="py-1">
                   <img 
-                    src="/cookeddog.png" 
+                    src="/cookedDog.png" 
                     alt="Cooked Dog" 
                     className="rounded-lg shadow-md max-w-full h-auto"
                     style={{ maxHeight: "200px", objectFit: "contain" }}
@@ -763,7 +770,7 @@ export function ChatInterface({ isInfected, onInfect }: { isInfected: boolean, o
               const msgsWithoutTyping = prev.filter(m => m.type !== "typing");
               return [
                 ...msgsWithoutTyping,
-                { id: `resp-${timestamp}-1`, role: "max", type: "text", isReward: true, text: "Okay. let me think about this one...." },
+                { id: `resp-${timestamp}-1`, role: "max", type: "text", isSpecialStyle: true, text: "Okay. let me think about this one...." },
                 { id: `typing-${timestamp}-2`, role: "max", type: "typing" }
               ];
             });
@@ -914,8 +921,8 @@ export function ChatInterface({ isInfected, onInfect }: { isInfected: boolean, o
           id: `exp-msg-5`, 
           role: "max", 
           type: "text", 
-          isReward: true,
-          text: "" // Content handled by isReward in ReceivedBubble
+          isDustyPrototype: true,
+          text: "" // Content handled by isDustyPrototype in ReceivedBubble
         }
       ]);
       
@@ -1113,7 +1120,8 @@ export function ChatInterface({ isInfected, onInfect }: { isInfected: boolean, o
                   <ReceivedBubble 
                     key={msg.id} 
                     text={msg.text} 
-                    isReward={msg.isReward} 
+                    isSpecialStyle={msg.isSpecialStyle} 
+                    isDustyPrototype={msg.isDustyPrototype} 
                     yesCount={yesCount} 
                     isInfected={isInfected}
                     isDraggingSpare={isDraggingSpare}
