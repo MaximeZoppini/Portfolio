@@ -429,6 +429,8 @@ export function ChatInterface({ isInfected, onInfect }: { isInfected: boolean, o
   // This solves ALL Framer Motion layout teleportation bugs caused by scroll jumping.
 
   const handleChoiceClick = (choice: Choice) => {
+    if (isWaitingForResponse || isGhosting || isExploded) return;
+    
     // Clear yes infection timer if user chooses a real question
     if (yesTimerRef.current) {
       clearTimeout(yesTimerRef.current);
@@ -514,7 +516,7 @@ export function ChatInterface({ isInfected, onInfect }: { isInfected: boolean, o
   };
 
   const handleCustomSend = () => {
-    if (!isValidChoice || isGhosting) return;
+    if (!isValidChoice || isGhosting || isWaitingForResponse || isExploded) return;
     
     // Clear yes infection timer if user types something else (though validation usually stops this)
     if (textToMatch !== "yes" && yesTimerRef.current) {
@@ -883,6 +885,7 @@ export function ChatInterface({ isInfected, onInfect }: { isInfected: boolean, o
 
     // Sequence timer management
     const runSequence = async () => {
+      setIsWaitingForResponse(true);
       const wait = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
       await wait(1500); // Let explosion finish
@@ -1326,8 +1329,8 @@ export function ChatInterface({ isInfected, onInfect }: { isInfected: boolean, o
                 <motion.button 
                   key={`send-btn-${bulgeTrigger}`}
                   type="submit"
-                  disabled={!isValidChoice}
-                  className={isValidChoice ? "send-button-ready" : ""}
+                  disabled={!isValidChoice || isWaitingForResponse}
+                  className={(isValidChoice && !isWaitingForResponse) ? "send-button-ready" : ""}
                   initial={{ scale: baseScale }}
                   animate={bulgeTrigger > 0 ? {
                     scale: [baseScale, baseScale * 1.5, baseScale + 0.1]
@@ -1419,6 +1422,7 @@ export function ChatInterface({ isInfected, onInfect }: { isInfected: boolean, o
             onAnimationComplete={(definition) => {
               if (typeof definition === "object" && "x" in definition) {
                 setTimeout(async () => {
+                  setIsWaitingForResponse(true);
                   setIsDraggingSpare(false);
                   setIsExploded(false);
                   setHasRestored(true);
