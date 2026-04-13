@@ -108,7 +108,7 @@ const CHOICES: Choice[] = [
           </li>
           <li>
             <a
-              href="https://github.com/MaximeZpn/justmakeit-back"
+              href="https://github.com/MaximeZoppini/justmakeit-back"
               target="_blank"
               rel="noopener noreferrer"
               style={{ color: "#0A84FF", textDecoration: "underline", fontWeight: "bold" }}
