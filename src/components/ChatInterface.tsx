@@ -117,6 +117,17 @@ const CHOICES: Choice[] = [
             </a>{" "}
             — Self-hosted collaborative DAW with local AI (Ollama + LangChain4j), real-time WebSockets, and full DevOps pipeline on Proxmox.
           </li>
+          <li>
+            <a
+              href="https://github.com/MaximeZoppini/Sector-Transfer"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "#0A84FF", textDecoration: "underline", fontWeight: "bold" }}
+            >
+              Sector-Transfer
+            </a>{" "}
+            — Strategic intelligence & ideation engine using local AI (Gemma 4 26B A4B) and RAG (ChromaDB) on an Obsidian knowledge vault to simulate new ideas via innovations transfers between industries. Read the README for more info.
+          </li>
         </ul>
       </div>
     )
