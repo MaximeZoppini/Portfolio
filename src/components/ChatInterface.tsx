@@ -126,7 +126,7 @@ const CHOICES: Choice[] = [
             >
               Sector-Transfer
             </a>{" "}
-            — Strategic intelligence & ideation engine using local AI (Gemma 4 26B A4B) and RAG (ChromaDB) on an Obsidian knowledge vault to simulate new ideas via innovations transfers between industries. Read the README for more info.
+            — Strategic intelligence & ideation engine using local AI (Gemma 4 26B A4B) and RAG (ChromaDB) on an Obsidian knowledge vault to simulate new ideas via innovations transfers between industries.
           </li>
         </ul>
       </div>
