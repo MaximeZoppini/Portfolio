@@ -21,6 +21,21 @@ export function AppleFooter({ isInfected }: { isInfected?: boolean }) {
       className="relative py-4 px-4 bg-black border-t border-white/5"
       style={{ flexShrink: 0 }}
     >
+      <style>
+        {`
+          @media (max-width: 640px) {
+            .footer-btn {
+              padding: 0.75rem !important;
+            }
+            .footer-btn span {
+              display: none !important;
+            }
+            .footer-container {
+              gap: 1rem !important;
+            }
+          }
+        `}
+      </style>
       <div className="max-w-7xl mx-auto">
         {/* CTA Section */}
         <motion.div
@@ -32,15 +47,15 @@ export function AppleFooter({ isInfected }: { isInfected?: boolean }) {
         >
           
           {/* Contact links */}
-          <div className="flex flex-wrap justify-center gap-6">
+          <div className="footer-container flex flex-wrap justify-center gap-6">
             <motion.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               href="https://github.com/MaximeZoppini"
               target="_blank" rel="noopener noreferrer"
-              className="flex items-center gap-3 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-full text-white transition-colors"
+              className="footer-btn flex items-center gap-3 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-full text-white transition-colors"
             >
-              <Github className="size-5" />
+              <Github className="size-5" strokeWidth={0.5} />
               <span>{isInfected ? "Yes" : "GitHub"}</span>
             </motion.a>
 
@@ -49,9 +64,9 @@ export function AppleFooter({ isInfected }: { isInfected?: boolean }) {
               whileTap={{ scale: 0.95 }}
               href="/MaximeZoppini_Resume.pdf"
               download="MaximeZoppini_Resume.pdf"
-              className="flex items-center gap-3 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-full text-white transition-colors"
+              className="footer-btn flex items-center gap-3 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-full text-white transition-colors"
             >
-              <Download className="size-5" />
+              <Download className="size-5" strokeWidth={0.5} />
               <span>{isInfected ? "Yes" : "Download CV"}</span>
             </motion.a>
 
@@ -60,9 +75,9 @@ export function AppleFooter({ isInfected }: { isInfected?: boolean }) {
               whileTap={{ scale: 0.95 }}
               href="https://www.linkedin.com/in/maximezoppini/"
               target="_blank" rel="noopener noreferrer"
-              className="flex items-center gap-3 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-full text-white transition-colors"
+              className="footer-btn flex items-center gap-3 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-full text-white transition-colors"
             >
-              <Linkedin className="size-5" />
+              <Linkedin className="size-5" strokeWidth={0.5} />
               <span>{isInfected ? "Yes" : "LinkedIn"}</span>
             </motion.a>
 
@@ -71,9 +86,9 @@ export function AppleFooter({ isInfected }: { isInfected?: boolean }) {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={handleCopyEmail}
-                className="flex items-center gap-3 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-full text-white transition-colors"
+                className="footer-btn flex items-center gap-3 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-full text-white transition-colors"
               >
-                <Mail className="size-5" />
+                <Mail className="size-5" strokeWidth={0.5} />
                 <span>{isInfected ? "Yes" : "zoppinimax@gmail.com"}</span>
               </motion.button>
               {emailCopied && (

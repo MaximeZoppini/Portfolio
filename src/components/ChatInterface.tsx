@@ -949,7 +949,7 @@ export function ChatInterface({ isInfected, onInfect }: { isInfected: boolean, o
   return (
     <section 
       className="relative" 
-      style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden", background: "#000000" }}
+      style={{ flex: 1, minHeight: 0, display: "flex", flexDirection: "column", overflow: "hidden", background: "#000000" }}
     >
       {/* ── iOS Header ── */}
       <div
@@ -1122,7 +1122,7 @@ export function ChatInterface({ isInfected, onInfect }: { isInfected: boolean, o
       <div
         className="w-full pb-12 custom-scrollbar"
         style={{ 
-          flex: 1, overflowY: "auto", display: "flex", flexDirection: "column-reverse",
+          flex: 1, minHeight: 0, overflowY: "auto", WebkitOverflowScrolling: "touch", display: "flex", flexDirection: "column-reverse",
           maxWidth: 560, margin: "0 auto", paddingLeft: 20, paddingRight: 20 
         }}
       >
@@ -1329,7 +1329,7 @@ export function ChatInterface({ isInfected, onInfect }: { isInfected: boolean, o
                 border: "1px solid rgba(255,255,255,0.08)",
                 borderRadius: "24px",
                 padding: "10px 45px 10px 20px",
-                fontSize: "15px",
+                fontSize: "16px",
                 outline: "none",
                 caretColor: "#0A84FF",
               }}
